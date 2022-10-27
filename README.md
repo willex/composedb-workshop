@@ -73,14 +73,22 @@ After adding the DID, lets start the node and on to the build steps: \
 1. Create or edit `AddressBook.graphql` schema
 2. Create a composite from the AddressBook schema: \
 `composedb composite:create schemas/AddressBook.graphql --output eth-address-book.json --did-private-key $(cat priv.key)`
-3. Create or edit `AddressBookEntry.graqhql` schema: \
+3. Get the created `AddressBook` ID to reference it in the relational schema: \
+`composedb composite:models eth-address-book.json`
+
+*Copy out ID to use in the next step:*
+```
+✔ Fetching composite's models... Done!
+[{"id":"kjzl6hvfrbw6c8q2qtmt297gpp66meihwthrcg3uiohzxhv5myz5d7ajf30ylgz","name":"AddressBook","description":"Simple Address Book"}]
+```
+3. Create or edit `AddressBookEntry.graqhql` schema and use the correct ID from the previous step to reference `AddressBook`: \
 `composedb composite:create schemas/AddressBookEntry.graphql --output=eth-address-book-entries.json --did-private-key $(cat priv.key)`
 4. Merge the composites into a single encoded file: \
 `composedb composite:merge eth-address-book.json eth-address-book-entries.json --output=demo-address-book-merged.json`
 5. Deploy the merged composite. This will add the models to your local node and start indexing automatically: \
 `composedb composite:deploy demo-address-book-merged.json`
 
-***That's it! We are ready to play with data!*** 🙌
+***Still with me... great! We are ready to play with data!*** 🙌
 
 ## 3. Runtime Steps - Say Hello to GRAPHIQL
 
@@ -89,7 +97,7 @@ If you made it this far, I'm proud of you! Now comes the really fun part:
 1. Compile a runtime representation to use (this would be used by our application to interact with the node): \
 `composedb composite:compile demo-address-book-merged.json demo-runtime.json`
 
-2. In lieu of a front-end, ComposeDB ships with GraphiQL to get you started:
+2. In lieu of a front-end, ComposeDB ships with GraphiQL to get you started: \
 `composedb graphql:server --graphiql --port=35000 demo-runtime.json --did-private-key=$(cat priv.key)`
 
 You should be able to [CONNECT](http://localhost:35000/graphql) now!
@@ -109,7 +117,7 @@ query{
 ```
 Since we don't have data nothing will be returned, but if you don't get an error you are ready to go!
 
-### Create new address book
+### Create New AddressBook
 ```
 mutation CreateNewAddressBook($i: CreateAddressBookInput!) {
     createAddressBook(input: $i) {
@@ -133,7 +141,7 @@ mutation CreateNewAddressBook($i: CreateAddressBookInput!) {
 ```
 
 
-### Create new address book entry
+### Create New AddressBookEntry
 
 ```
 mutation CreateNewAddressBookEntry ($i: CreateAddressBookEntryInput!) {
@@ -166,7 +174,7 @@ mutation CreateNewAddressBookEntry ($i: CreateAddressBookEntryInput!) {
 }
 ```
 
-### Query Composite Data:
+### Query Final Composite Data:
 ```
 query {
     addressBookEntryIndex(first: 5) {
@@ -187,12 +195,13 @@ query {
 }
 ```
 
-And thats all folks. You are now officialy a ComposeDB PRO. Go back and have a look at the schemas and play around with them or try to create your own schemas and models.
+***And that's all folks*** 😎 ***!*** ***You are now officialy a ComposeDB PRO. Go back and have a look at the schemas and play around with them or try to create your own schemas and models. Can't wait to see what you are building on ComposeDB!***
 
-## 4. Bonus content
+## 4. Bonus Content
 
+- We are [HIRING](https://jobs.lever.co/3box)!
 - Start a deep dive with the [COMPOSE DB DOCS](https://composedb.js.org)
-- Recap [VIDEO](https://drive.google.com/file/d/1X6KCKLWXj6r8XKZlKic1rpomHJBZGxP6/view?usp=sharing) for later watching
+- Recap [VIDEO](https://drive.google.com/file/d/1X6KCKLWXj6r8XKZlKic1rpomHJBZGxP6/view?usp=sharing) that walks you through step by step
 > WARNING: not a 100% match to the above & might be a bit outdated but captures the gist of the demo
-- Come and join our [COMMUNITY FORM](https://forum.ceramic.network)
+- Come and join our [COMMUNITY FORUM](https://forum.ceramic.network)
 - Node deployment [TEMPLATE (EXPERIMENTAL!!!)](https://github.com/ceramicstudio/ceramic-infra-poc)
