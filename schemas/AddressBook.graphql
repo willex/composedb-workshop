@@ -1,0 +1,3 @@
+type AddressBook @createModel(accountRelation: LIST, description: "Simple Address Book"){
+    addressBookName: String! @string(maxLength: 100)
+}

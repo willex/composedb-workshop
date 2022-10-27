@@ -1,0 +1,15 @@
+type AddressBook @loadModel(id: "kjzl6hvfrbw6c8q2qtmt297gpp66meihwthrcg3uiohzxhv5myz5d7ajf30ylgz"){
+    id: ID!
+}
+
+type AddressBookEntry @createModel(accountRelation: LIST, description: "Simple Address Book Entry"){
+    addressBook: StreamID! @documentReference(model: "AddressBook")
+    book: AddressBook! @relationDocument(property: "addressBook")
+    entryName: String! @string(maxLength: 100)
+    walletAddresses: [WalletAddress!] @list(maxLength: 50)
+}
+
+type WalletAddress{
+    address: String! @string(maxLength: 100)
+    blockchainNetwork: String! @string(maxLength: 100)
+}
