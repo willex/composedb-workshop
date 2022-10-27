@@ -191,6 +191,7 @@ And thats all folks. You are now officialy a ComposeDB PRO. Go back and have a l
 
 ## 4. Bonus content
 
+- Start a deep dive with the [COMPOSE DB DOCS](https://composedb.js.org)
 - Recap [VIDEO](https://drive.google.com/file/d/1X6KCKLWXj6r8XKZlKic1rpomHJBZGxP6/view?usp=sharing) for later watching
 > WARNING: not a 100% match to the above & might be a bit outdated but captures the gist of the demo
 - Come and join our [COMMUNITY FORM](https://forum.ceramic.network)
