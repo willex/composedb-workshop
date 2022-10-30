@@ -20,7 +20,8 @@ Install the necessities - `@next` ensures you are running the latest developer p
 `pnpm install --global @composedb/cli@next @ceramicnetwork/cli@next`
 
 Now to create a new PK & corresponding DID to get our node setup. \
-`composedb did:generate-private-key` 
+`composedb did:generate-private-key` \
+`composedb did:from-private-key ADD_GENERATED_PK_HERE`
 
 For demo purposes and to follow along with the tutorial you can store the PK in `priv.key`. Just be careful *NOT TO COMMIT* this file by accident. Alternatively, you can also set a new ENV variable `DID_PRIVATE_KEY`. Doing this you can just omit `--did-private-key` from the example commands.
 
